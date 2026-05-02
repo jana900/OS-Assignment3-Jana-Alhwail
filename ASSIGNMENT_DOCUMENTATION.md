@@ -184,18 +184,45 @@ To protect all three counter variables, I used a single ReentrantLock called cou
 
 ### Critical Section #1: Counter Variables
 
-**Which variables**: 
+**Which variables**: contextSwitchCount, completedProcessCount, and totalWaitingTime.
 
-**Why they need protection**: 
+**Why they need protection**: These variables are shared between multiple threads, and updating them isn't an atomic operation. Concurrent access may lead to lost updates and incorrect final results.
 
-**Synchronization mechanism used**: 
+**Synchronization mechanism used**: ReentrantLock using counterLock.
 
 **Code snippet**:
 ```java
-// Paste your implementation here
+public static final ReentrantLock counterLock = new ReentrantLock();
+
+public static void incrementContextSwitch() {
+    counterLock.lock();
+    try {
+        contextSwitchCount++;
+    } finally {
+        counterLock.unlock();
+    }
+}
+
+public static void incrementCompletedProcess() {
+    counterLock.lock();
+    try {
+        completedProcessCount++;
+    } finally {
+        counterLock.unlock();
+    }
+}
+
+public static void addWaitingTime(long time) {
+    counterLock.lock();
+    try {
+        totalWaitingTime += time;
+    } finally {
+        counterLock.unlock();
+    }
+}
 ```
 
-**Justification**: 
+**Justification**: The lock ensures mutual exclusion, so only one thread can update the shared counters at a time. Using a finally block guarantees that the lock is always released after the critical section, which helps prevent deadlocks.
 
 ---
 
