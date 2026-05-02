@@ -1,7 +1,7 @@
 # Assignment 3 - Complete Documentation
 
-**Student Name**: [Your Full Name]  
-**Student ID**: [Your ID]  
+**Student Name**: [Jana alhwail]  
+**Student ID**: [445052122]  
 **Date Submitted**: [Submission Date]
 
 ---
@@ -31,68 +31,93 @@
 
 Document your development process with **minimum 3 entries** showing progression:
 
-### Entry 1 - [Date, Time]
+### Entry 1 - [April 30, 2026, 7:30 PM]
 **What I implemented**: 
+I began by going over the assignment guidelines and the SchedulerSimulationSync.java beginning code file. I replaced the default value of the studentID variable with my real student ID. Additionally, I looked over the shared resources in the SharedResources class, paying particular attention to contextSwitchCount, completedProcessCount, totalWaitingTime, and executionLog.
 
 **Challenges encountered**: 
+Understanding why these variables are regarded as shared resources and why they can result in race conditions in a multithreaded program was the primary issue.
 
 **How I solved it**: 
+I went over the synchronization ideas from Operating System Concepts, paying particular attention to locks, semaphores, mutual exclusion, race conditions, and critical sections. I found the sections of the code where shared data may be updated by many threads.
 
 **Testing approach**: 
+To comprehend the final synchronization statistics, the process execution order, and the output format, I ran the original application.
 
 **Time spent**: 
+About 1 hour.
 
 ---
 
-### Entry 2 - [Date, Time]
+### Entry 2 - [May 1, 2026, 4:00 PM]
 **What I implemented**: 
+I included the necessary Java imports for Semaphore and ReentrantLock. Next, I added logLock to safeguard the executionLog ArrayList, counterLock to safeguard the shared counters, and cpuSemaphore with a single permit to manage CPU access.
 
 **Challenges encountered**: 
+Deciding where to declare the locks and semaphore such that all methods in SharedResources and Process could safely access them was the primary challenge.
 
-**How I solved it**: 
+**How I solved it**:
+Within SharedResources, I made the locks and semaphore public static final variables. This allowed them to maintain the synchronization code organized in a single class while sharing synchronization techniques for all threads. 
 
 **Testing approach**: 
+After adding the imports and synchronization objects, I saved the code and verified that Visual Studio Code displayed no syntax problems.
 
 **Time spent**: 
+About 1.5 hours.
 
 ---
 
-### Entry 3 - [Date, Time]
+### Entry 3 - [May 1, 2026, 8:30 PM]
 **What I implemented**: 
+I used counterLock to safeguard the shared counter variables. I changed incrementContextSwitch, incrementCompletedProcess, and addWaitingTime so that lock, try, finally, and unlock surround each critical section.
 
-**Challenges encountered**: 
+**Challenges encountered**:
+Ensuring that every lock is always released, even in the event of an exception during execution, was the primary problem. 
 
 **How I solved it**: 
+Try-finally blocks were what I used. The try block updates the shared counter, and the finally block calls counterLock.unlock.
 
 **Testing approach**: 
+To ensure that there was only one lock call and one corresponding unlock call, I went over each method. Additionally, I verified that the original counter update algorithm remained unaltered.
 
 **Time spent**: 
+About 1 hour.
 
 ---
 
-### Entry 4 - [Date, Time]
+### Entry 4 - [May 2, 2026, 1:00 PM]
 **What I implemented**: 
+I used logLock to safeguard the executionLog ArrayList. In order to perform executionLog.add(message) inside a protected critical area, I modified the logExecution method.
 
 **Challenges encountered**: 
+Understanding that ArrayList is not thread-safe and that multiple threads writing to it simultaneously could result in inconsistent log entries or ConcurrentModificationException was the primary challenge.
 
 **How I solved it**: 
+For the execution log, I employed a different ReentrantLock known as logLock. This maintains the design's clarity and distinguishes log protection from counter protection.
 
 **Testing approach**: 
+I executed the application and verified that there were no exceptions in the Execution Log Summary at the conclusion.
 
 **Time spent**: 
+About 1 hour.
 
 ---
 
-### Entry 5 - [Date, Time]
+### Entry 5 - [May 2, 2026, 2:00 PM]
 **What I implemented**: 
+The run and runToCompletion methods now have semaphore synchronization. Prior to execution, the process obtains the cpuSemaphore, which it releases in the finally block.
 
 **Challenges encountered**: 
+Making sure the semaphore was always released was the primary problem in avoiding deadlock. Managing situations when acquire might be interrupted before the semaphore is obtained presented another difficulty.
 
 **How I solved it**: 
+To monitor if the semaphore was properly acquired, I utilized a boolean variable called cpuAcquired. Then, only if cpuAcquired is true did I release the semaphore.
 
 **Testing approach**: 
+I ran the program multiple times and verified that all processes completed successfully, the completed process count matched the number of processes, and no deadlock or ConcurrentModificationException occurred.
 
 **Time spent**: 
+About 1.5 hours.
 
 ---
 
