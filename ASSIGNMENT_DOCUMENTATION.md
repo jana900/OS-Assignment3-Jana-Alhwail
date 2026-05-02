@@ -131,7 +131,11 @@ About 1.5 hours.
 
 **Your Answer**:
 
-[Your answer here - 4-6 sentences with code examples]
+The first race condition occurs in the shared counter variables such as contextSwitchCount and completedProcessCount. Multiple threads update these variables, and non-atomic operations like incrementing a counter may result in lost updates and incorrect outcomes.
+
+The second race condition occurs in executionLog, which is an ArrayList shared by all threads. Since ArrayList is not thread-safe, concurrent additions may lead to inconsistent data or runtime errors such as ConcurrentModificationException.
+
+To address these problems, I used ReentrantLock to protect these critical sections. The counterLock ensures safe updates of the counter variables, while the logLock protects the executionLog from concurrent modification.
 
 ---
 
@@ -140,7 +144,11 @@ About 1.5 hours.
 
 **Your Answer**:
 
-[Your answer here - explain your implementation choices]
+ReentrantLock provides mutual exclusion, allowing only one thread to access a critical section at a time. I used ReentrantLock in my code to protect shared resources such as the counter variables and the executionLog.
+
+A Semaphore is used to control access to a limited resource using permits. In my implementation, I used a binary semaphore with a single permit to represent the CPU, allowing only one process to execute at a time.
+
+ReentrantLock was used to protect shared data, while Semaphore was used to control access to the CPU resource.
 
 ---
 
@@ -149,7 +157,13 @@ About 1.5 hours.
 
 **Your Answer**:
 
-[Your answer here - reference try-finally blocks, lock ordering, etc.]
+Deadlock is a situation where two or more threads are holding a resource and waiting for another resource that will never be released.
+
+One prevention technique is to always release locks in a finally block. In my code, I used try-finally to ensure that each ReentrantLock is always released, even if an exception occurs.
+
+Another technique is to keep critical sections as short as possible and avoid holding resources for a long time. In my implementation, I only locked the necessary operations and kept the protected sections minimal.
+
+Additionally, I used a cpuAcquired flag when working with the semaphore to ensure that the CPU permit is only released if it was successfully acquired, which helps prevent incorrect resource handling.
 
 ---
 
@@ -162,7 +176,7 @@ About 1.5 hours.
 
 **Your Answer**:
 
-[Your answer here - explain coarse-grained vs fine-grained locking, independence of counters, concurrency implications. Show understanding of when to use each approach. 5-8 sentences expected.]
+To protect all three counter variables, I used a single ReentrantLock called counterLock, which is a coarse-grained locking approach. I chose this design because the counter operations are simple and short. This makes the implementation easier to understand and less prone to synchronization errors. The main advantage of coarse-grained locking is simplicity and easier maintenance. However, it may reduce concurrency because only one thread can update any counter at a time. Fine-grained locking uses a separate lock for each counter, allowing higher concurrency since the counters are independent. For this assignment, I chose coarse-grained locking because it is sufficient and provides a clear and safe solution.
 
 ---
 
