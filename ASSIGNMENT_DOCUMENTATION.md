@@ -228,18 +228,27 @@ public static void addWaitingTime(long time) {
 
 ### Critical Section #2: Execution Log
 
-**What resource**: 
+**What resource**: executionLog, which is a shared ArrayList.
 
-**Why it needs protection**: 
+**Why it needs protection**: executionLog is accessed by multiple threads, and ArrayList is not thread-safe. Concurrent modifications may lead to inconsistent data or runtime errors such as ConcurrentModificationException.
 
-**Synchronization mechanism used**: 
+**Synchronization mechanism used**: ReentrantLock using logLock.
 
 **Code snippet**:
 ```java
-// Paste your implementation here
+public static final ReentrantLock logLock = new ReentrantLock();
+
+public static void logExecution(String message) {
+    logLock.lock();
+    try {
+        executionLog.add(message);
+    } finally {
+        logLock.unlock();
+    }
+}
 ```
 
-**Justification**: 
+**Justification**: The lock ensures that only one thread can modify the executionLog at a time. This prevents concurrent modification issues and maintains data consistency.
 
 ---
 
