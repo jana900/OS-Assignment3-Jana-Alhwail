@@ -254,18 +254,53 @@ public static void logExecution(String message) {
 
 ### Critical Section #3: CPU Semaphore
 
-**Purpose of semaphore**: 
+**Purpose of semaphore**: The purpose of the semaphore is to control access to the simulated CPU resource and ensure that only one process can execute at a time.
 
-**Number of permits and why**: 
+**Number of permits and why**: I used one permit because only one process should access the CPU at a time. Therefore, the semaphore functions as a binary semaphore.
 
-**Where implemented**: 
+**Where implemented**: It is declared in the SharedResources class and used in the run() and runToCompletion() methods.
 
 **Code snippet**:
 ```java
-// Paste your implementation here
+public static final Semaphore cpuSemaphore = new Semaphore(1);
+
+@Override
+public void run() {
+    boolean cpuAcquired = false;
+
+    try {
+        SharedResources.cpuSemaphore.acquire();
+        cpuAcquired = true;
+
+        // Process execution code
+
+    } finally {
+        if (cpuAcquired) {
+            SharedResources.cpuSemaphore.release();
+        }
+    }
+}
+
+public void runToCompletion() {
+    boolean cpuAcquired = false;
+
+    try {
+        SharedResources.cpuSemaphore.acquire();
+        cpuAcquired = true;
+
+        // Final process execution code
+
+    } catch (InterruptedException e) {
+        System.out.println(Colors.RED + "  ✗ " + name + " was interrupted." + Colors.RESET);
+    } finally {
+        if (cpuAcquired) {
+            SharedResources.cpuSemaphore.release();
+        }
+    }
+}
 ```
 
-**Effect on program behavior**: 
+**Effect on program behavior**: The semaphore ensures that only one process can access the CPU execution section at a time. This prevents uncontrolled concurrent CPU access and improves the consistency of the scheduler output.
 
 ---
 
