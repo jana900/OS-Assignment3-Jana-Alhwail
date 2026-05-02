@@ -214,7 +214,12 @@ class Process implements Runnable {
 
     public void runToCompletion() {
         // TODO: Similar synchronization needed here
+        // Flag to track if semaphore is acquired
+        boolean cpuAcquired = false;
         try {
+            // Acquire CPU semaphore before final execution
+            SharedResources.cpuSemaphore.acquire();
+            cpuAcquired = true;
             System.out.println(Colors.BRIGHT_CYAN + "  ⚡ " + Colors.BOLD + Colors.CYAN + name +
                     Colors.RESET + Colors.BRIGHT_CYAN + " is the last process, running to completion" +
                     Colors.RESET + " [" + remainingTime + "ms]");
@@ -231,7 +236,13 @@ class Process implements Runnable {
             System.out.println();
         } catch (InterruptedException e) {
             System.out.println(Colors.RED + "  ✗ " + name + " was interrupted." + Colors.RESET);
+        } finally {
+            // Release CPU semaphore after final execution
+            if (cpuAcquired) {
+                SharedResources.cpuSemaphore.release();
+            }
         }
+
     }
 
     public String getName() {
