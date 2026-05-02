@@ -358,11 +358,11 @@ Synchronization is necessary because multiple threads access shared resources su
 ### Test 2: Exception Testing
 **What I tested**: Checking for ConcurrentModificationException
 
-**Testing procedure**: 
+**Testing procedure**: I repeatedly executed the synchronized program and observed the behavior of the executionLog when accessed concurrently by multiple threads.
 
-**Results**: 
+**Results**: No runtime errors or ConcurrentModificationException occurred during execution. The executionLog was updated accurately and consistently in all runs.
 
-**What this proves**: 
+**What this proves**: This demonstrates that using ReentrantLock to protect the executionLog ensures thread-safe operations and prevents concurrent modification issues.
 
 ---
 
