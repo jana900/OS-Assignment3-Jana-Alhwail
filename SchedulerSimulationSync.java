@@ -188,6 +188,8 @@ class Process implements Runnable {
             }
             System.out.println();
 
+        } catch (InterruptedException e) {
+            System.out.println(Colors.RED + "\n  ✗ " + name + " was interrupted." + Colors.RESET);
         } finally {
             // TODO #4: Release CPU semaphore here
             // Always release in finally block to prevent deadlocks!
