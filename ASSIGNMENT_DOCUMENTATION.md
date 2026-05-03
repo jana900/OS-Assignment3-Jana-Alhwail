@@ -367,13 +367,18 @@ Synchronization is necessary because multiple threads access shared resources su
 ---
 
 ### Test 3: Correctness Verification
-**What I tested**: Verifying correct final values (total burst time, context switches, etc.)
+**What I tested**: confirming accurate final results, including execution log entries, waiting times, context switches, and completed processes.
 
-**Expected values**: 
+
+**Expected values**:The total number of created processes should match the number of completed processes. Since the program generated 16 processes, the expected completedProcessCount is 16. The program should also complete without deadlock, print ALL PROCESSES COMPLETED, and produce accurate synchronization statistics.
 
 **Actual values**: 
+Total Context Switches: 34
+Total Completed Processes: 16
+Total Waiting Time: 1062833ms
+Average Waiting Time: 66427ms
 
-**Analysis**: 
+**Analysis**: The actual completed process count matched the expected value of 16, confirming that all processes finished successfully. The program also generated accurate statistics and printed ALL PROCESSES COMPLETED, which demonstrates that the synchronization mechanisms worked correctly.
 
 ---
 
