@@ -2,7 +2,7 @@
 
 **Student Name**: [Jana alhwail]  
 **Student ID**: [445052122]  
-**Date Submitted**: [Submission Date]
+**Date Submitted**: [4 May, 2026, 1:00 AM]
 
 ---
 
@@ -14,16 +14,16 @@
 > Set sharing to "Anyone with the link can view".
 > Test the link in incognito/private mode before submitting.
 
-**Video Link**: [Paste your personal Gmail Google Drive link here]
+**Video Link**: https://drive.google.com/file/d/1s0mVzMRsYHF-RthZZ8ul7H6DTuYp5zCR/view?usp=drivesdk
 
-**Video filename**: `[YourStudentID]_Assignment3_Synchronization.mp4`
+**Video filename**: `445052122_Assignment3_Synchronization.mp4`
 
 **Verification**:
-- [ ] Link is accessible (tested in incognito mode)
-- [ ] Video is 3-5 minutes long
-- [ ] Video shows code walkthrough and commits
-- [ ] Video has clear audio
-- [ ] Uploaded to PERSONAL Gmail (not @std.psau.edu.sa)
+- [ OK] Link is accessible (tested in incognito mode)
+- [ OK] Video is 3-5 minutes long
+- [ OK] Video shows code walkthrough and commits
+- [ OK] Video has clear audio
+- [ OK] Uploaded to PERSONAL Gmail (not @std.psau.edu.sa)
 
 ---
 
@@ -420,30 +420,48 @@ Synchronization is like a traffic light at an intersection. Only one car can pas
 
 ## Part 6: GitHub Repository Information
 
-**Repository URL**: 
+**Repository URL**: https://github.com/jana900/OS-Assignment3-Jana-Alhwail.git 
 
-**Number of commits**: 
+**Number of commits**: 18
 
 **Commit messages**: 
-1. 
-2. 
-3. 
-4. 
+1. Set my ID to 445052122  
+2. Add synchronization imports  
+3. Add locks and semaphore to shared resources  
+4. Protect shared counters with ReentrantLock  
+5. Protect execution log with ReentrantLock  
+6. Acquire CPU semaphore in run method  
+7. Release CPU semaphore in run method  
+8. Synchronize runToCompletion with semaphore  
+9. Update student name and ID and development log  
+10. Answering Part 2 technical questions  
+11. Complete counter variables analysis  
+12. Complete execution log analysis  
+13. Complete CPU semaphore analysis  
+14. Complete consistency test  
+15. Complete exception test  
+16. Complete correctness verification  
+17. Complete scenario testing  
+18. Complete Part 5 Reflection and Learning  
+
 
 ---
 
 ## Summary
 
-**Total time spent on assignment**: 
+**Total time spent on assignment**:
+Approximately 6–8 hours over multiple sessions from April 30 to May 4, 2026
 
 **Key takeaways**: 
-1. 
-2. 
-3. 
+1. Synchronization is essential to prevent race conditions in multithreaded programs.  
+2. Semaphore and ReentrantLock have complementary but distinct roles.  
+3. Proper testing ensures reliable and consistent program behavior.
 
-**Most challenging aspect**: 
+**Most challenging aspect**:
+Identifying all critical sections and correctly implementing synchronization without introducing errors.
 
-**What I'm most proud of**: 
+**What I'm most proud of**:
+Successfully implementing synchronization step by step and verifying the correctness of the program through multiple tests. 
 
 ---
 
