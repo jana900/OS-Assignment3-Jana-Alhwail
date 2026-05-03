@@ -383,13 +383,13 @@ Average Waiting Time: 66427ms
 ---
 
 ### Test 4: Different Scenarios
-**Scenario tested**: [e.g., different time quantum, more processes, etc.]
+**Scenario tested**: Running the program multiple times with different randomly generated process burst times based on the student ID seed.
 
-**Purpose**: 
+**Purpose**: To verify that the synchronization mechanisms function correctly under different scheduling conditions and varying workloads.
 
-**Results**: 
+**Results**: The program handled all scenarios successfully. All processes were executed and completed without errors, and the synchronization statistics remained consistent across runs.
 
-**What I learned**: 
+**What I learned**: I learned that synchronization ensures correct behavior even when process workloads and execution order vary.
 
 ---
 
