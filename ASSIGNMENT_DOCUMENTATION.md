@@ -2,7 +2,7 @@
 
 **Student Name**: [Jana alhwail]  
 **Student ID**: [445052122]  
-**Date Submitted**: [4 May, 2026, 1:00 AM]
+**Date Submitted**: [4 May, 2026]
 
 ---
 
@@ -19,11 +19,11 @@
 **Video filename**: `445052122_Assignment3_Synchronization.mp4`
 
 **Verification**:
-- [ OK] Link is accessible (tested in incognito mode)
-- [ OK] Video is 3-5 minutes long
-- [ OK] Video shows code walkthrough and commits
-- [ OK] Video has clear audio
-- [ OK] Uploaded to PERSONAL Gmail (not @std.psau.edu.sa)
+- [ ] Link is accessible (tested in incognito mode)
+- [ ] Video is 3-5 minutes long
+- [ ] Video shows code walkthrough and commits
+- [ ] Video has clear audio
+- [ ] Uploaded to PERSONAL Gmail (not @std.psau.edu.sa)
 
 ---
 
@@ -422,7 +422,7 @@ Synchronization is like a traffic light at an intersection. Only one car can pas
 
 **Repository URL**: https://github.com/jana900/OS-Assignment3-Jana-Alhwail.git 
 
-**Number of commits**: 18
+**Number of commits**: 20
 
 **Commit messages**: 
 1. Set my ID to 445052122  
@@ -442,7 +442,9 @@ Synchronization is like a traffic light at an intersection. Only one car can pas
 15. Complete exception test  
 16. Complete correctness verification  
 17. Complete scenario testing  
-18. Complete Part 5 Reflection and Learning  
+18. Complete Part 5 Reflection and Learning
+19. Add video link and Date Submitted
+20. edit date Submitted
 
 
 ---
